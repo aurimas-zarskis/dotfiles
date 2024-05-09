@@ -1,0 +1,75 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+"Map leader key"
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+
+"Go to normal mode with Ctr-c"
+map <C-c> <Esc>
+
+"General editor setup"
+set scrolloff=10
+set number
+set relativenumber
+set showmode
+set showcmd
+set visualbell
+set clipboard+=unnamed
+set idearefactormode=keep
+set ReplaceWithRegister
+set surround
+
+"Search improvements"
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+"IDE actions to edit code"
+nmap <leader>om <Action>(OverrideMethods)
+nmap <leader>re <Action>(RenameElement)
+nmap <leader>rf <Action>(RenameFile)
+nmap <leader>cs <Action>(ChangeSignature)
+nmap <leader>f <Action>(ReformatCode)
+
+sethandler <C-j> n-v:vim i:ide
+sethandler <C-k> n-v:vim i:ide
+nmap <C-k> <Action>(MoveLineUp)
+vmap <C-k> <Action>(MoveLineUp)
+imap <C-k> <Action>(EditorUp)
+nmap <C-j> <Action>(MoveLineDown)
+vmap <C-j> <Action>(MoveLineDown)
+imap <C-j> <Action>(EditorDown)
+
+"IDE navigation actions"
+nmap <leader>gi <Action>(GotoImplementation)
+nmap <leader>gd <Action>(GotoSuperMethod)
+nmap <leader>gt <Action>(GotoTest)
+nmap <leader>ge <Action>(GotoNextError)
+nmap <leader>gE <Action>(GotoPreviousError)
+
+"Window navigation"
+nmap <leader>q <Action>(CloseContent)
+nmap <leader>Q <Action>(CloseAllEditors)
+nnoremap <TAB> gt
+nnoremap <S-TAB> gT
+
+"When navigating always center the screen"
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+"Nerd tree setup"
+set NERDTree
+nnoremap <leader>p :NERDTreeToggle<CR>
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+"Highlighted yank"
+set highlightedyank
+let g:highlightedyank_highlight_duration = "2000"
