@@ -8,8 +8,6 @@ default_roles:
   - android-studio
   - rectangle
 
-ansible_user: "zarskis"
-
 # Git variables
 git_user_name: "zarskis"
 git_user_email: !vault |

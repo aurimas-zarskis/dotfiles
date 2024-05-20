@@ -6,7 +6,7 @@
 
 - name: Ensure zsh is the default shell
   user:
-    name: "{{ ansible_user }}"
+    name: "{{ host_user }}"
     shell: "/opt/homebrew/bin/zsh"
   become: true
 
@@ -44,6 +44,11 @@
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
     dest: "{{ zsh_custom }}/plugins/zsh-autosuggestions"
     clone: yes
+
+- name: Ensure meslo font is installed
+  homebrew_cask:
+    name: font-meslo-for-powerlevel10k
+    state: present
 
 - name: Copy .zshrc
   ansible.builtin.copy:

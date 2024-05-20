@@ -1,0 +1,8 @@
+---
+# code for installing plugins from cli
+# https://github.com/diademiemi/ansible_collection_diademiemi.jetbrains/blob/d46e56bc660c168ac5b4ed26e2cbddaf96a5f370/roles/common/tasks/setup/common/plugin.yml
+# https://intellij-support.jetbrains.com/hc/en-us/articles/206544519-Directories-used-by-the-IDE-to-store-settings-caches-plugins-and-logs?page=3
+- name: Copy .ideavimrc
+  ansible.builtin.copy:
+    src: ".ideavimrc"
+    dest: "{{ ansible_user_dir }}/.ideavimrc"
