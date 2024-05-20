@@ -15,7 +15,7 @@ This playbook includes a custom shell script located at `bin/dotfiles`. This scr
 To update your environment run the `dotfiles` command in your shell:
 
 ```bash
-dotfiles.sh
+dotfiles
 ```
 
 This `dotfiles` command is available to you after the first use of this repo, as it adds this repo's `bin` directory to your path, allowing you to call `dotfiles` from anywhere.
