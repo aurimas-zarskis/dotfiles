@@ -63,6 +63,15 @@ if test ! $(which ansible); then
   brew install ansible
 fi
 
+# Clone the repository
+if ! [[ -d "$DOTFILES_DIR" ]]; then
+  _task "Cloning repository"
+  _cmd "git clone --quiet https://github.com/aurimas-zarskis/dotfiles.git $DOTFILES_DIR"
+else
+  _task "Updating repository"
+  _cmd "git -C $DOTFILES_DIR pull --quiet"
+fi
+
 # Update Ansible galaxy
 update_ansible_galaxy
 
