@@ -1,0 +1,13 @@
+---
+# Tasks referenced from https://github.com/ProfessorManhattan/ansible-androidstudio/blob/master/tasks/install-Darwin.yml
+- name: Ensure Android Studio is installed
+  homebrew_cask:
+    name: "android-studio-preview@beta"
+    state: present
+
+- name: Ensure Android SDK tools are installed
+  ansible.builtin.import_tasks: install_sdk.yml
+
+- name: Ensure Android Studio plugins are installed
+  ansible.builtin.import_tasks: install_plugins.yml
+

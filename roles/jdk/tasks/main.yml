@@ -1,0 +1,17 @@
+---
+- name: Ensure openjdk 17 is installed
+  homebrew:
+    name: "openjdk@17"
+    state: present
+  register: jdk_installed
+
+- name: Set JAVA_HOME if JDK was installed
+  blockinfile:
+    block: |
+      export JAVA_HOME="$(find /opt/homebrew/Cellar/openjdk@17/* -type d -prune)"
+      export JDK_HOME="$(find /opt/homebrew/Cellar/openjdk@17/* -type d -prune)"
+    create: true
+    marker: "# {mark} Ansible managed block for JDK"
+    mode: 0644
+    path: ~/.zshenv
+  when: jdk_installed is succeeded
