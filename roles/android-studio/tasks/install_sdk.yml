@@ -13,7 +13,7 @@
   register: manager_downloaded
   when: not manager.stat.exists
 
-- name: "Ensure Android sdk directory exists"
+- name: Ensure Android sdk directory exists
   file:
     mode: 0700
     path: "{{ android_sdk_root }}/cmdline-tools"

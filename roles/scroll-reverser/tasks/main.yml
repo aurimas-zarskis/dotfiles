@@ -1,0 +1,5 @@
+---
+- name: Ensure scroll reverser is installed
+  homebrew_cask:
+    name: "scroll-reverser"
+    state: present

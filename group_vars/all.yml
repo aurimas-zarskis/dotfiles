@@ -1,12 +1,18 @@
 default_roles:
-  - git
+  - zsh
   - ssh
+  - git
   - jdk
-  - oh-my-zsh
-  - iterm2
+  - alacritty
   - brave
   - android-studio
+  - zed
   - rectangle
+  - scroll-reverser
+  - 1password
+  - mac-defaults
+  - spark
+  - slack
 
 # Git variables
 git_user_name: "zarskis"

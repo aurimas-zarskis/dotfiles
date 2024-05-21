@@ -3,7 +3,8 @@
 # Paths
 DOTFILES_LOG="$HOME/.dotfiles.log"
 DOTFILES_DIR="$HOME/.dotfiles"
-VAULT_SECRET="$HOME/.ansible-vault/vault.secret"
+VAULT_DIR="$HOME/.ansible-vault"
+VAULT_SECRET="$VAULT_DIR/vault.secret"
 
 function _task {
   # if _task is called while a task was set, complete the previous
@@ -82,7 +83,8 @@ _task "Running Ansible playbook"; _task_done
 if [[ -f $VAULT_SECRET ]]; then
   ansible-playbook --ask-become-pass --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
 else
-  touch $VAULT_SECRETC
+  mkdir $VAULT_DIR
+  touch $VAULT_SECRET
   echo "Vault secret $VAULT_SECRET is missing. Please add it to continue"
   exit 1
 fi
