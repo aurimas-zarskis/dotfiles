@@ -9,28 +9,16 @@
       tags:
         - always
 
-    - name: Check if homebrew is installed
-      stat:
-        path: /opt/homebrew
-      register: homebrew_check
-
-    - name: Installing Homebrew
-      shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      when:
-        - not homebrew_check.stat.exists
-
   tasks:
     - name: Updating Homebrew
       homebrew:
         update_homebrew: true
-      when: homebrew_check.stat.exists
 
     - name: Upgrading Homebrew Packages
       homebrew:
         upgrade_all: true
       register: result
       until: result is successful
-      when: homebrew_check.stat.exists
 
     - name: Set roles
       ansible.builtin.set_fact:
