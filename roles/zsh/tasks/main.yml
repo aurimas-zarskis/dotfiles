@@ -37,3 +37,12 @@
     src: ".p10k.zsh"
     dest: "{{ ansible_user_dir }}/.p10k.zsh"
     mode: "0644"
+
+- name: Add dotfiles to path
+  blockinfile:
+    block: |
+      path+=({{ ansible_user_dir }}/.dotfiles/bin)
+    create: true
+    marker: "# {mark} Ansible managed block for custom dotfiles.sh script"
+    mode: 0644
+    path: "{{ ansible_user_dir }}/.zshenv"

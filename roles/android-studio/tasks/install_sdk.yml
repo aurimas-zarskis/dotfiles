@@ -40,6 +40,8 @@
 - name: Fetch the list of available SDKs and Tools
   command: "{{ android_sdk_root }}/cmdline-tools/latest/bin/sdkmanager --list"
   register: sdk_list
+  environment:
+    JAVA_HOME: "{{ JAVA_HOME }}"
 
 - name: Find the latest version of SDKs and Tools
   set_fact:
@@ -61,17 +63,20 @@
 - name: Ensure SDKs and Tools are installed
   shell: |
     set -o pipefail
-    echo 'y' | ~/Library/Android/sdk/cmdline-tools/latest/bin/sdkmanager --install "{{ item }}"
+    echo 'y' | {{ ansible_user_dir }}/Library/Android/sdk/cmdline-tools/latest/bin/sdkmanager --install "{{ item }}"
   loop: "{{
     build_tools_version | default([]) +
     platforms_version | default([]) +
     sources_version | default([]) +
     emulator_version | default([]) +
     platform_tools_version | default([]) }}"
+  environment:
+    JAVA_HOME: "{{ JAVA_HOME }}"
 
 - name: Ensure Android tools are added to PATH
   blockinfile:
     block: |
+      export ANDROID_HOME="{{ android_sdk_root }}"
       path+=({{ android_sdk_root }}/cmdline-tools/latest/bin)
       path+=({{ android_sdk_root }}/platform-tools)
       path+=({{ android_sdk_root }}/tools/bin)
@@ -79,7 +84,4 @@
     create: true
     marker: "# {mark} Ansible managed block for Android Studio"
     mode: 0644
-    path: ~/.zshenv
-
-- name: Source .zshrc
-  shell: "source {{ ansible_user_dir }}/.zshrc
+    path: "{{ ansible_user_dir }}/.zshenv"

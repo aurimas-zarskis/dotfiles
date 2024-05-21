@@ -1,2 +1,2 @@
 ---
-android_sdk_root: ~/Library/Android/sdk
+android_sdk_root: "{{ ansible_user_dir }}/Library/Android/sdk"
