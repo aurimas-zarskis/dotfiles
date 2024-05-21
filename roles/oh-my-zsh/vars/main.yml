@@ -1,2 +1,0 @@
----
-zsh_custom: "{{ ansible_user_dir }}/.oh-my-zsh/custom"

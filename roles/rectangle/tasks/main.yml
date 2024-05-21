@@ -1,5 +1,5 @@
 ---
-- name: Ensure iterm2 is installed
+- name: Ensure rectangle is installed
   homebrew_cask:
     name: "rectangle"
     state: present

@@ -1,0 +1,50 @@
+---
+- name: Set macos defaults
+  shell: |
+    # Dock
+    defaults write com.apple.dock autohide -bool true                                 # Set dock to autohide
+    defaults write com.apple.dock orientation -string "bottom"                        # Set dock position to bottom
+    defaults write com.apple.dock show-recents -bool false                            # Disable recents section
+    defaults write com.apple.dock minimize-to-application -bool true                  # Minimise windows into application icon
+    defaults write com.apple.dock show-process-indicators -bool true                  # Show indicator for active apps
+    defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true  # Show spring loading animation when app is launching
+    defaults write com.apple.dock autohide-delay -float 0                             # Remove hide delay
+    defaults write com.apple.dock autohide-time-modifier -float 0.6                   # Make dock hide/show animation faster
+    defaults write com.apple.dock tilesize -float 58                                  # Dock icon size
+    defaults write com.apple.dock magnification -bool true                            # Enable dock magnification
+    defaults write com.apple.dock largesize -int 78                                   # Set dock maximum magnification
+    defaults write com.apple.dock mineffect -string "scale"                           # Set mineffect to scale
+
+    # Remove hot corners
+    defaults write com.apple.dock wvous-tl-corner -int 0
+    defaults write com.apple.dock wvous-tr-corner -int 0
+    defaults write com.apple.dock wvous-bl-corner -int 0
+    defaults write com.apple.dock wvous-br-corner -int 0
+
+    # Mission control
+    defaults write com.apple.dock mru-spaces -bool false                    # Dont rearrange spaces
+    defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool true    # Switch to space with open windows
+    defaults write com.apple.spaces spans-displays -bool false              # Displays have separate spaces
+
+    defaults write com.apple.WindowManager GloballyEnabled -bool false  # Disable stage manager
+
+    # Keyboard
+    defaults write NSGlobalDomain KeyRepeat -int 3                    # Set blazingly fast key repeat rate
+    defaults write NSGlobalDomain InitialKeyRepeat -int 12            # Set blazingly fast initial key repeat rate
+    defaults write ApplePressAndHoldEnabled -bool false               # Disable press and hold for special characters
+
+    # Trackpad
+    defaults write -g com.apple.trackpad.scaling -float 1.5                       # Set trackpad speed
+    defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 1   # Set click force to medium
+    defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true       # Enable natural scroll
+
+    # Text correction
+    defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false      # Disable automatic capitalization
+    defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false  # Disable peroid substitution
+    defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false   # Disable smart quotes
+    defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false    # Disable smart dashes
+    defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false      # Disable automatic capitalization
+    defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false  # Disable auto-correct
+    defaults write NSGlobalDomain NSAutomaticTextCompletionEnabled -bool false      # Disable text-completion
+    
+    killall Dock
