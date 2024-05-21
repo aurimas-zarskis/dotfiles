@@ -80,3 +80,6 @@
     marker: "# {mark} Ansible managed block for Android Studio"
     mode: 0644
     path: ~/.zshenv
+
+- name: Source .zshrc
+  shell: "source {{ ansible_user_dir }}/.zshrc
