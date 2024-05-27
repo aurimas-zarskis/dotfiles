@@ -22,8 +22,8 @@
     dest: "{{ ansible_user_dir }}/.config/alacritty/themes"
     clone: yes
 
-- name: Copy alacritty config file
-  ansible.builtin.copy:
-    src: "alacritty.toml"
+- name: Create symlink for alacritty config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/alacritty.toml"
     dest: "{{ ansible_user_dir }}/.config/alacritty/alacritty.toml"
-    mode: "0644"
+    state: link

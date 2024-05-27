@@ -26,17 +26,18 @@
   homebrew:
     name: "zsh-syntax-highlighting"
 
-- name: Copy .zshrc file
-  ansible.builtin.copy:
-    src: ".zshrc"
+- name: Create symlink for .zshrc file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.zshrc"
     dest: "{{ ansible_user_dir }}/.zshrc"
-    mode: "0644"
+    force: true
+    state: link
 
-- name: Copy .p10k.zsh file
-  ansible.builtin.copy:
-    src: ".p10k.zsh"
+- name: Create symlink for .p10k.zsh file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.p10k.zsh"
     dest: "{{ ansible_user_dir }}/.p10k.zsh"
-    mode: "0644"
+    state: link
 
 - name: Add dotfiles to path
   blockinfile:
