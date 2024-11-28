@@ -39,10 +39,8 @@ sethandler <C-j> n-v:vim i:ide
 sethandler <C-k> n-v:vim i:ide
 nmap <C-k> <Action>(MoveLineUp)
 vmap <C-k> <Action>(MoveLineUp)
-imap <C-k> <Action>(EditorUp)
 nmap <C-j> <Action>(MoveLineDown)
 vmap <C-j> <Action>(MoveLineDown)
-imap <C-j> <Action>(EditorDown)
 
 "IDE navigation actions"
 nmap <leader>gi <Action>(GotoImplementation)
