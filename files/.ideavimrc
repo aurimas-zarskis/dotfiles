@@ -8,6 +8,9 @@ set visualbell
 set ReplaceWithRegister
 set NERDTree
 set which-key
+set functiontextobj
+set argtextobj
+set switch
 
 " Search improvements
 set ignorecase
@@ -23,12 +26,13 @@ Plug "machakann/vim-highlightedyank"
 set highlightedyank
 let g:highlightedyank_highlight_duration = "1000"
 
+set timeout
 set timeoutlen=5000
 
 " Key mappings
 " ========================================================
 let mapleader = " "
-inoremap <C-c> <Esc>:set nohlsearch<CR>
+inoremap <C-c> <Esc>
 
 " Reformat code
 map == <Action>(ReformatCode)
@@ -39,6 +43,13 @@ nnoremap <leader>pq :NERDTreeClose<CR>
 
 " Show hover info
 map <leader>h <action>(ShowHoverInfo)
+
+" Error navigation
+map <C-e> <Action>(GotoNextError)
+
+" Switch setup
+map <C-s> :Switch<CR>
+let g:switch_definitions = "group:basic"
 
 " Close active tab
 map <leader>q <action>(CloseContent)
@@ -63,8 +74,8 @@ map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 
 " Jump between methods
-nnoremap [[ <Action>(MethodUp)
-nnoremap ]] <Action>(MethodDown)
+map [[ <Action>(MethodUp)
+map ]] <Action>(MethodDown)
 
 " Popup navigation
 " inoremap <C-j> <Action>(PopupMenu-selectNext)
@@ -101,6 +112,7 @@ map <leader>ff <action>(GotoFile)
 map <leader>fc <action>(GotoClass)
 map <leader>fs <action>(GotoSymbol)
 map <leader>fl <action>(RecentLocations)
+map <leader>fm <Action>(FileStructurePopup)
 
 " Search
 map <leader>ss <action>(FindInPath)
@@ -153,6 +165,7 @@ let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Find files"
 let g:WhichKeyDesc_file_nav_goto_class = "<leader>fc Find class"
 let g:WhichKeyDesc_file_nav_goto_symbol = "<leader>fs Find symbol"
 let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations"
+let g:WhichKeyDesc_file_nav_show_file_structure = "<leader>fm Show file structure popup"
 
 let g:WhichKeyDesc_search = "<leader>s Search menu"
 let g:WhichKeyDesc_search_in_files "<leader>ss Search in files"
