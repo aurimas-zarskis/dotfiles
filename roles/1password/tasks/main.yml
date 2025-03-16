@@ -1,5 +1,0 @@
----
-- name: Ensure 1password is installed
-  homebrew_cask:
-    name: "1password"
-    state: present

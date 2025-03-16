@@ -1,5 +1,0 @@
----
-- name: Ensure rectangle is installed
-  homebrew_cask:
-    name: "rectangle"
-    state: present

@@ -1,0 +1,44 @@
+---
+- name: Update Homebrew
+  homebrew:
+    update_homebrew: true
+
+- name: Upgrade Homebrew Packages
+  homebrew:
+    upgrade_all: true
+  register: result
+  until: result is successful
+
+- name: Install homebrew casks
+  vars:
+    brew_casks:
+      - 1password
+      - android-studio-preview@beta
+      - brave-browser
+      - scroll-reverser
+      - slack
+      - readdle-spark
+      - zed
+      - ghostty
+      - font-jetbrains-mono-nerd-font
+      - hammerspoon
+  homebrew_cask:
+    name: "{{ brew_casks }}"
+    state: present
+
+- name: Install homebrew packages
+  vars:
+    brew_packages:
+      - zsh
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
+      - oh-my-posh
+      - fzf
+      - git
+#      - gawk
+#      - grep
+#      - gnu-sed
+#      - coreutils
+  homebrew:
+    name: "{{ brew_packages }}"
+    state: present

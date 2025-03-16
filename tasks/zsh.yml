@@ -1,0 +1,46 @@
+---
+- name: Ensure zsh is the default shell
+  user:
+    name: "{{ host_user }}"
+    shell: "/opt/homebrew/bin/zsh"
+  become: true
+
+- name: Create symlink for Oh-My-Posh config directory
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/ohmyposh"
+    dest: "{{ ansible_user_dir }}/.config/ohmyposh"
+    force: true
+    state: link
+
+- name: Create symlink for .zshrc file
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/.zshrc"
+    dest: "{{ ansible_user_dir }}/.zshrc"
+    force: true
+    state: link
+
+- name: Create zsh plugins directory
+  file:
+    path: "{{ ansible_user_dir }}/.config/zsh/plugins"
+    state: directory
+    mode: 0700
+
+#- name: Clone fzf-tab-completion plugin
+#  ansible.builtin.git:
+#    repo: "https://github.com/lincheney/fzf-tab-completion"
+#    dest: "{{ ansible_user_dir }}/.config/zsh/plugins/fzf-tab-completion"
+
+- name: Clone fzf-tab plugin
+  ansible.builtin.git:
+    repo: "https://github.com/Aloxaf/fzf-tab"
+    dest: "{{ ansible_user_dir }}/.config/zsh/plugins/fzf-tab"
+
+- name: Add dotfiles to path
+  blockinfile:
+    prepend_newline: true
+    block: |
+      path+=({{ ansible_user_dir }}/.dotfiles/bin)
+    create: true
+    marker: "# {mark} Ansible managed block for custom dotfiles.sh script"
+    mode: 0644
+    path: "{{ ansible_user_dir }}/.zshenv"

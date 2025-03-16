@@ -1,0 +1,18 @@
+---
+- name: Install openjdk21
+  homebrew:
+    name: "openjdk@21"
+    state: present
+  register: jdk_installed
+
+- name: Set JAVA_HOME if JDK was installed
+  blockinfile:
+    prepend_newline: true
+    block: |
+      export JAVA_HOME="$(find /opt/homebrew/Cellar/openjdk@21/* -type d -prune)"
+      export JDK_HOME="$(find /opt/homebrew/Cellar/openjdk@21/* -type d -prune)"
+    create: true
+    marker: "# {mark} Ansible managed block for JDK"
+    mode: 0644
+    path: "{{ ansible_user_dir }}/.zshenv"
+  when: jdk_installed is succeeded

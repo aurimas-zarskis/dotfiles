@@ -1,0 +1,158 @@
+set scrolloff=10
+set number
+set relativenumber
+set showmode
+set showcmd
+set idearefactormode=keep
+set visualbell
+set ReplaceWithRegister
+set NERDTree
+set which-key
+
+" Search improvements
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" Use system clipboard
+set clipboard+=unnamed
+
+"Highlighted yank"
+Plug "machakann/vim-highlightedyank"
+set highlightedyank
+let g:highlightedyank_highlight_duration = "1000"
+
+set timeoutlen=5000
+
+" Key mappings
+" ========================================================
+let mapleader = " "
+inoremap <C-c> <Esc>:set nohlsearch<CR>
+
+" Reformat code
+map == <Action>(ReformatCode)
+
+"Nerd tree setup"
+nnoremap <leader>pp :NERDTreeFocus<CR>
+nnoremap <leader>pq :NERDTreeClose<CR>
+
+" Show hover info
+map <leader>h <action>(ShowHoverInfo)
+
+" Close active tab
+map <leader>q <action>(CloseContent)
+map <leader>Q <action>(CloseAllEditors)
+
+"When navigating always center the screen"
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Pane navigation
+nnoremap <A-h> <C-w>h
+nnoremap <A-l> <C-w>l
+nnoremap <A-k> <C-w>k
+nnoremap <A-j> <C-w>j
+
+" Window splits
+map <leader>wv <Action>(SplitVertically)
+map <leader>wh <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+
+" Jump between methods
+nnoremap [[ <Action>(MethodUp)
+nnoremap ]] <Action>(MethodDown)
+
+" Popup navigation
+" inoremap <C-j> <Action>(PopupMenu-selectNext)
+" inoremap <C-k> <Action>(PopupMenu-selectPrev)
+
+" Refactoring
+map <leader>re <Action>(RenameElement)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>rf <Action>(RenameFile)
+map <leader>rv <Action>(IntroduceVariable)
+map <leader>rr <Action>(Refactorings.QuickListPopupAction)
+
+" Go to code
+nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>gy <Action>(GotoTypeDeclaration)
+nmap <leader>gi <Action>(GotoImplementation)
+nmap <leader>gu <Action>(ShowUsages)
+nmap <leader>gt <Action>(GotoTest)
+nmap <leader>gb <Action>(Back)
+nmap <leader>gf <Action>(Forward)
+
+" Code movement between lines
+nmap <C-k> <Action>(MoveLineUp)
+vmap <C-k> <Action>(MoveLineUp)
+nmap <C-j> <Action>(MoveLineDown)
+vmap <C-j> <Action>(MoveLineDown)
+
+" Actions
+map <leader>am <action>(ShowIntentionActions)
+map <leader>ar <action>(RunMenu)
+
+" File navigation
+map <leader>ff <action>(GotoFile)
+map <leader>fc <action>(GotoClass)
+map <leader>fs <action>(GotoSymbol)
+map <leader>fl <action>(RecentLocations)
+
+" Search
+map <leader>ss <action>(FindInPath)
+
+" Which key setup
+" ========================================================
+let g:WhichKey_FontSize = 12
+let g:WhichKey_CommandColor = "#41ead4"
+let g:WhichKey_PrefixColor = "#f335b2"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+
+let g:WhichKeyDesc_leader = "<leader> Leader key"
+
+let g:WhichKeyDesc_hover_info = "<leader>h Show hover menu"
+let g:WhichKeyDesc_editor_close = "<leader>q Close editor window"
+let g:WhichKeyDesc_editor_close_all = "<leader>Q Close all editor window"
+
+let g:WhichKeyDesc_nerdtree = "<leader>p Nerdtree"
+let g:WhichKeyDesc_nerdtree_focus = "<leader>pp Focus project view window"
+let g:WhichKeyDesc_nerdtree_close = "<leader>pq Close project view window"
+
+let g:WhichKeyDesc_window = "<leader>w Window splits"
+let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
+let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
+let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
+let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
+
+let g:WhichKeyDesc_action= "<leader>a Actions"
+let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
+let g:WhichKeyDesc_action_run_menu = "<leader>ar Open run menu"
+
+let g:WhichKeyDesc_refactoring = "<leader>r Refactoring menu"
+let g:WhichKeyDesc_refactoring_rename = "<leader>re Rename element"
+let g:WhichKeyDesc_refactoring_method = "<leader>rm Extract method"
+let g:WhichKeyDesc_refactoring_file = "<leader>rf Rename file"
+let g:WhichKeyDesc_refactoring_variable = "<leader>rv Introduce variable"
+let g:WhichKeyDesc_refactoring_all = "<leader>rr Open refactorings menu"
+
+let g:WhichKeyDesc_goto = "<leader>g Go to"
+let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
+let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Definition"
+let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
+let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
+let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
+let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
+let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
+
+let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
+let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Find files"
+let g:WhichKeyDesc_file_nav_goto_class = "<leader>fc Find class"
+let g:WhichKeyDesc_file_nav_goto_symbol = "<leader>fs Find symbol"
+let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations"
+
+let g:WhichKeyDesc_search = "<leader>s Search menu"
+let g:WhichKeyDesc_search_in_files "<leader>ss Search in files"

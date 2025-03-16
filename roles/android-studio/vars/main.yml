@@ -1,2 +1,0 @@
----
-android_sdk_root: "{{ ansible_user_dir }}/Library/Android/sdk"

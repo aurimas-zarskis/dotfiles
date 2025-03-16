@@ -1,0 +1,7 @@
+---
+- name: Create symlink for hammerspoon config directory
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/hammerspoon"
+    dest: "{{ ansible_user_dir }}/.hammerspoon"
+    force: true
+    state: link

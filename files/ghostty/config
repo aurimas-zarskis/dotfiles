@@ -1,0 +1,11 @@
+theme = "Monokai Pro"
+
+# window configuration
+background-opacity = 0.8
+background-blur = true
+window-padding-x = 10
+window-padding-y = 10
+
+# font configuration
+font-family = JetBrainsMono
+font-size = 14

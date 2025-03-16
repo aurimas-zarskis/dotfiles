@@ -1,5 +1,0 @@
----
-- name: Ensure brave browser is installed
-  homebrew_cask:
-    name: "brave-browser"
-    state: present

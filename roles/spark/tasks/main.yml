@@ -1,5 +1,0 @@
----
-- name: Ensure spark is installed
-  homebrew_cask:
-    name: "readdle-spark"
-    state: present

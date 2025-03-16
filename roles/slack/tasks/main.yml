@@ -1,5 +1,0 @@
----
-- name: Ensure slack is installed
-  homebrew_cask:
-    name: "slack"
-    state: present
