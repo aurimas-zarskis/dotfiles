@@ -120,9 +120,12 @@ map <leader>ss <action>(FindInPath)
 " Which key setup
 " ========================================================
 let g:WhichKey_FontSize = 12
-let g:WhichKey_CommandColor = "#41ead4"
-let g:WhichKey_PrefixColor = "#f335b2"
+let g:WhichKey_KeyStyle = "bold"
+let g:WhichKey_PrefixStyle = "italic"
+let g:WhichKey_CommandStyle = "bold"
 let g:WhichKey_SortOrder = "by_key_prefix_first"
+let g:WhichKey_ShowTypedSequence = "true"
+let g:WhichKey_FontFamily = "JetBrainsMono"
 
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 
