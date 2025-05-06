@@ -83,7 +83,7 @@ update_ansible_galaxy
 # Run playbook
 _task "Running Ansible playbook"; _task_done
 if [[ -f $VAULT_SECRET ]]; then
-  ansible-playbook --ask-become-pass --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
+  ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
 else
   mkdir $VAULT_DIR
   touch $VAULT_SECRET

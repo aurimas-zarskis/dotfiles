@@ -1,10 +1,4 @@
 ---
-- name: Ensure zsh is the default shell
-  user:
-    name: "{{ host_user }}"
-    shell: "/opt/homebrew/bin/zsh"
-  become: true
-
 - name: Create symlink for Oh-My-Posh config directory
   ansible.builtin.file:
     src: "{{ playbook_dir }}/files/ohmyposh"

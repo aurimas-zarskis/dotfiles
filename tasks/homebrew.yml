@@ -29,7 +29,6 @@
 - name: Install homebrew packages
   vars:
     brew_packages:
-      - zsh
       - zsh-autosuggestions
       - zsh-syntax-highlighting
       - oh-my-posh
