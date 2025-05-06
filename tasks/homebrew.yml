@@ -21,8 +21,8 @@
       - zed
       - ghostty
       - font-jetbrains-mono-nerd-font
-      - hammerspoon
       - obsidian
+      - nikitabobko/tap/aerospace
   homebrew_cask:
     name: "{{ brew_casks }}"
     state: present

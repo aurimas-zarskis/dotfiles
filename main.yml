@@ -11,7 +11,7 @@
       - tasks/java.yml
       - tasks/android_studio.yml
       - tasks/ghostty.yml
-      - tasks/hammerspoon.yml
+      - tasks/aerospace.yml
       - tasks/mac_defaults.yml
 
   pre_tasks:
