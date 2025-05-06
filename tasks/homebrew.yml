@@ -22,6 +22,7 @@
       - ghostty
       - font-jetbrains-mono-nerd-font
       - hammerspoon
+      - obsidian
   homebrew_cask:
     name: "{{ brew_casks }}"
     state: present
