@@ -3,8 +3,11 @@ HISTFILE=$HOME/.cache/.zhistory
 SAVEHIST=10000
 HISTSIZE=10000
 setopt share_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_SAVE_NO_DUPS
 setopt hist_verify
 
 # Set up fzf key bindings and fuzzy completion

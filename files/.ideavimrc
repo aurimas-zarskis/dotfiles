@@ -32,10 +32,10 @@ set timeoutlen=5000
 " Key mappings
 " ========================================================
 let mapleader = " "
-inoremap <C-c> <Esc>
+noremap <C-c> <Esc>:noh<CR>
 
 " Reformat code
-map == <Action>(ReformatCode)
+map == <Action>(ReformatCode)<Action>(OptimizeImports)
 
 "Nerd tree setup"
 nnoremap <leader>pp :NERDTreeFocus<CR>
