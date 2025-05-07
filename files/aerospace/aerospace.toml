@@ -10,8 +10,6 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
 default-root-container-layout = "tiles"
 default-root-container-orientation = "auto"
-on-focused-monitor-changed = ["move-mouse monitor-lazy-center"]
-on-focus-changed = ["move-mouse window-lazy-center"]
 automatically-unhide-macos-hidden-apps = true
 
 # Configure window gaps
@@ -28,8 +26,8 @@ preset = "qwerty"
 
 # Main mode bindings
 [mode.main.binding]
-    alt-slash = "layout tiles horizontal vertical"
-    alt-comma = "layout accordion horizontal vertical"
+    cmd-shift-slash = "layout tiles horizontal vertical"
+    cmd-shift-comma = "layout accordion horizontal vertical"
 
     cmd-q = "close --quit-if-last-window"
     cmd-w = []
@@ -49,24 +47,23 @@ preset = "qwerty"
     cmd-minus = "resize smart -50"
     cmd-equal = "resize smart +50"
 
-    cmd-0 = "workspace 0" # Android studio
-    cmd-9 = "workspace 9" # Terminal
-    cmd-8 = "workspace 8" # Browser
-    cmd-7 = "workspace 7" # Finder
-    cmd-6 = "workspace 6" # Slack + Music
-    cmd-5 = "workspace 5"
-    cmd-4 = "workspace 4"
+    cmd-u = "workspace 0" # Android studio
+    cmd-i = "workspace 1" # Terminal
+    cmd-o = "workspace 2" # Browser
+    cmd-p = "workspace 3" # Slack + Music
+    cmd-0 = "workspace 4" # Finder
+    cmd-9 = "workspace 5"
+    cmd-8 = "workspace 6"
 
-    cmd-shift-0 = "move-node-to-workspace 0"
-    cmd-shift-9 = "move-node-to-workspace 9"
-    cmd-shift-8 = "move-node-to-workspace 8"
-    cmd-shift-7 = "move-node-to-workspace 7"
-    cmd-shift-6 = "move-node-to-workspace 6"
-    cmd-shift-5 = "move-node-to-workspace 5"
-    cmd-shift-4 = "move-node-to-workspace 4"
+    cmd-shift-u = "move-node-to-workspace 0"
+    cmd-shift-i = "move-node-to-workspace 1"
+    cmd-shift-o = "move-node-to-workspace 2"
+    cmd-shift-p = "move-node-to-workspace 3"
+    cmd-shift-0 = "move-node-to-workspace 4"
+    cmd-shift-9 = "move-node-to-workspace 5"
+    cmd-shift-8 = "move-node-to-workspace 6"
 
-    alt-shift-semicolon = "mode service"
-    ctrl-space = "mode service"
+    cmd-shift-semicolon = "mode service"
 
 # Service mode bindings
 [mode.service.binding]
@@ -92,26 +89,26 @@ run = "move-node-to-workspace 0"
 
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
-run = "move-node-to-workspace 9"
+run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = "com.brave.Browser"
-run = "move-node-to-workspace 8"
-
-[[on-window-detected]]
-if.app-id = "com.apple.finder"
-run = "move-node-to-workspace 7"
+run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
 if.app-id = "com.tinyspeck.slackmacgap"
-run = "move-node-to-workspace 6"
+run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = "com.apple.finder"
+run = "move-node-to-workspace 4"
 
 # force certain workspaces to certain monitors
 [workspace-to-monitor-force-assignment]
-0 = "main"
-9 = "main"
-8 = "secondary"
-7 = "secondary"
-6 = "secondary"
-5 = "secondary"
-4 = "main"
+0 = "2"
+1 = "2"
+2 = "3"
+3 = "3"
+4 = "3"
+5 = "3"
+6 = "3"
