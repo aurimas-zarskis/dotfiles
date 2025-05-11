@@ -9,6 +9,14 @@
   register: result
   until: result is successful
 
+- name: Tap homebrew
+  vars:
+    brew_taps:
+      - FelixKratz/formulae
+  homebrew_tap:
+    name: "{{ brew_taps }}"
+    state: present
+
 - name: Install homebrew casks
   vars:
     brew_casks:
@@ -35,6 +43,7 @@
       - oh-my-posh
       - fzf
       - git
+      - borders
 #      - gawk
 #      - grep
 #      - gnu-sed

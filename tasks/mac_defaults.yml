@@ -24,7 +24,7 @@
     # Mission control
     defaults write com.apple.dock mru-spaces -bool false                    # Dont rearrange spaces
     defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool true    # Switch to space with open windows
-    defaults write com.apple.spaces spans-displays -bool true               # Displays have separate spaces
+    defaults write com.apple.spaces spans-displays -bool true               # Displays share single space. Required for aerospace
 
     defaults write com.apple.WindowManager GloballyEnabled -bool false  # Disable stage manager
 
