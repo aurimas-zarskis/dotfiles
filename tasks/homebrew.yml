@@ -43,7 +43,6 @@
       - oh-my-posh
       - fzf
       - git
-      - borders
 #      - gawk
 #      - grep
 #      - gnu-sed

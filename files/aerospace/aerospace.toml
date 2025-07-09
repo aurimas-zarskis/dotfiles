@@ -2,9 +2,7 @@ after-login-command = []
 # Start AeroSpace at login
 
 start-at-login = true
-after-startup-command = [
-    "exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0"
-]
+after-startup-command = []
 
 # General configuration
 enable-normalization-flatten-containers = true
@@ -16,12 +14,12 @@ automatically-unhide-macos-hidden-apps = true
 
 # Configure window gaps
 [gaps]
-    inner.horizontal = 10
-    inner.vertical = 10
-    outer.left = 7
-    outer.bottom = 7
-    outer.top = 7
-    outer.right = 7
+    inner.horizontal = 5
+    inner.vertical = 5
+    outer.left = 5
+    outer.bottom = 5
+    outer.top = 5
+    outer.right = 5
 
 [key-mapping]
 preset = "qwerty"
@@ -54,7 +52,7 @@ preset = "qwerty"
     cmd-o = "workspace 2" # Browser
     cmd-p = "workspace 3" # Slack + Music
     cmd-0 = "workspace 4" # Finder
-    cmd-9 = "workspace 5"
+    cmd-9 = "workspace 5" # Mail and calendar
     cmd-8 = "workspace 6"
 
     cmd-shift-u = "move-node-to-workspace 0"
@@ -90,6 +88,10 @@ if.app-id = "com.google.android.studio"
 run = "move-node-to-workspace 0"
 
 [[on-window-detected]]
+if.app-id = "com.google.android.studio-EAP"
+run = "move-node-to-workspace 0"
+
+[[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
 run = "move-node-to-workspace 1"
 
@@ -103,12 +105,28 @@ run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = "com.apple.finder"
-run = "move-node-to-workspace 4"
+run = [ "layout floating", "move-node-to-workspace 4"]
+
+[[on-window-detected]]
+if.app-id = "com.readdle.SparkDesktop"
+run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
+if.app-id = "com.cron.electron"
+run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
+if.app-name-regex-substring = "java"
+run = "layout floating"
+
+[[on-window-detected]]
+if.app-id = "com.apple.iphonesimulator"
+run = "layout floating"
 
 # force certain workspaces to certain monitors
 [workspace-to-monitor-force-assignment]
-0 = "2"
-1 = "2"
+0 = "main"
+1 = "main"
 2 = "3"
 3 = "3"
 4 = "3"
