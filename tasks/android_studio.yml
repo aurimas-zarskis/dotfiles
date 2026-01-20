@@ -2,5 +2,5 @@
 - name: Create symlink for .ideavimrc
   ansible.builtin.file:
     src: "{{ playbook_dir }}/files/.ideavimrc"
-    dest: "{{ ansible_user_dir }}/.ideavimrc"
+    dest: "{{ ansible_facts['user_dir'] }}/.ideavimrc"
     state: link

@@ -1,12 +1,12 @@
 ---
 - name: Create SSH key directory
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.ssh/"
+    path: "{{ ansible_facts['user_dir'] }}/.ssh/"
     state: directory
 
 - name: Copy SSH keys
   copy:
-    dest: "{{ ansible_user_dir }}/.ssh/{{ ssh_key_item.key }}"
+    dest: "{{ ansible_facts['user_dir'] }}/.ssh/{{ ssh_key_item.key }}"
     content: "{{ ssh_key_item.value }}"
     mode: "0600"
   no_log: true
