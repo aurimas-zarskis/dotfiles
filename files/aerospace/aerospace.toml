@@ -68,6 +68,7 @@ preset = "qwerty"
 # Service mode bindings
 [mode.service.binding]
     esc = ["reload-config", "mode main"]
+    shift-f = ["layout tiling floating", "mode main"]
 
     alt-shift-h = ["join-with left", "mode main"]
     alt-shift-j = ["join-with down", "mode main"]
