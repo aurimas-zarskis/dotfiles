@@ -92,6 +92,14 @@ if.app-id = "com.google.android.studio-EAP"
 run = "move-node-to-workspace 0"
 
 [[on-window-detected]]
+if.app-id = "com.microsoft.VSCode"
+run = "move-node-to-workspace 0"
+
+[[on-window-detected]]
+if.app-id = "com.apple.dt.Xcode"
+run = "move-node-to-workspace 0"
+
+[[on-window-detected]]
 if.app-id = "net.java.openjdk.java"
 if.window-title-regex-substring = "Update"
 run = "layout floating"
@@ -130,6 +138,10 @@ run = "layout floating"
 
 [[on-window-detected]]
 if.app-id = "com.apple.iphonesimulator"
+run = "layout floating"
+
+[[on-window-detected]]
+if.app-id = "com.1password.1password"
 run = "layout floating"
 
 # force certain workspaces to certain monitors

@@ -27,6 +27,11 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Enable zsh-syntax-highlighting plugin
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+wts() {
+  local dir=$(git worktree list | fzf --height=40% --layout=reverse | awk '{print $1}')
+  [[ -n "$dir" ]] && cd "$dir"
+}
+
 # oh-my-posh setup
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/atomic.custom.omp.json)"
