@@ -2,20 +2,20 @@
 - name: Create symlink for Oh-My-Posh config directory
   ansible.builtin.file:
     src: "{{ playbook_dir }}/files/ohmyposh"
-    dest: "{{ ansible_user_dir }}/.config/ohmyposh"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/ohmyposh"
     force: true
     state: link
 
 - name: Create symlink for .zshrc file
   ansible.builtin.file:
     src: "{{ playbook_dir }}/files/.zshrc"
-    dest: "{{ ansible_user_dir }}/.zshrc"
+    dest: "{{ ansible_facts['user_dir'] }}/.zshrc"
     force: true
     state: link
 
 - name: Create zsh plugins directory
   file:
-    path: "{{ ansible_user_dir }}/.config/zsh/plugins"
+    path: "{{ ansible_facts['user_dir'] }}/.config/zsh/plugins"
     state: directory
     mode: 0700
 
@@ -27,14 +27,14 @@
 - name: Clone fzf-tab plugin
   ansible.builtin.git:
     repo: "https://github.com/Aloxaf/fzf-tab"
-    dest: "{{ ansible_user_dir }}/.config/zsh/plugins/fzf-tab"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/zsh/plugins/fzf-tab"
 
 - name: Add dotfiles to path
   blockinfile:
     prepend_newline: true
     block: |
-      path+=({{ ansible_user_dir }}/.dotfiles/bin)
+      path+=({{ ansible_facts['user_dir'] }}/.dotfiles/bin)
     create: true
     marker: "# {mark} Ansible managed block for custom dotfiles.sh script"
     mode: 0644
-    path: "{{ ansible_user_dir }}/.zshenv"
+    path: "{{ ansible_facts['user_dir'] }}/.zshenv"

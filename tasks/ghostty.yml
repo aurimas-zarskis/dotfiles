@@ -2,6 +2,6 @@
 - name: Create symlink for Ghostty config directory
   ansible.builtin.file:
     src: "{{ playbook_dir }}/files/ghostty"
-    dest: "{{ ansible_user_dir }}/.config/ghostty"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/ghostty"
     force: true
     state: link

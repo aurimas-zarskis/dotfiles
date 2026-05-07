@@ -6,8 +6,6 @@
 - name: Upgrade Homebrew Packages
   homebrew:
     upgrade_all: true
-  register: result
-  until: result is successful
 
 - name: Tap homebrew
   vars:
@@ -31,6 +29,7 @@
       - font-jetbrains-mono-nerd-font
       - obsidian
       - nikitabobko/tap/aerospace
+      - libreoffice
   homebrew_cask:
     name: "{{ brew_casks }}"
     state: present
