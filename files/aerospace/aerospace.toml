@@ -101,6 +101,16 @@ if.app-id = "com.apple.dt.Xcode"
 run = "move-node-to-workspace 0"
 
 [[on-window-detected]]
+if.app-id = "dev.zed.Zed"
+check-further-callbacks = true
+run = "move-node-to-workspace 0"
+
+[[on-window-detected]]
+if.app-id = "dev.zed.Zed"
+if.window-title-regex-substring = "Settings"
+run = "layout floating"
+
+[[on-window-detected]]
 if.app-id = "net.java.openjdk.java"
 if.window-title-regex-substring = "Update"
 run = "layout floating"

@@ -13,9 +13,23 @@
     },
   },
   {
-    "context": "Editor && vim_mode == insert",
+    "context": "VimControl",
     "bindings": {
-      // "j k": "vim::NormalBefore"
+      "==": "editor::Format",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "ctrl-k": "editor::MoveLineUp",
+      "ctrl-j": "editor::MoveLineDown",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "ctrl-k": "editor::MoveLineUp",
+      "ctrl-j": "editor::MoveLineDown",
     },
   },
 ]

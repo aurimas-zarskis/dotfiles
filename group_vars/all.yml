@@ -1,5 +1,5 @@
 # Git variables
-git_user_name: "zarskis"
+git_user_name: "Žarskis"
 git_user_email: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   38333638623933646562616566316430666535353333346262303335636139303836626262333337
