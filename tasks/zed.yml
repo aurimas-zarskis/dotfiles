@@ -1,0 +1,14 @@
+---
+- name: Create symlink for Zed config
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/zed/settings.json"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/zed/settings.json"
+    force: true
+    state: link
+
+- name: Create symlink for Zed keymap config
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/zed/keymap.json"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/zed/keymap.json"
+    force: true
+    state: link

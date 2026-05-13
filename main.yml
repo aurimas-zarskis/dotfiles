@@ -10,6 +10,7 @@
       - tasks/ssh.yml
       - tasks/java.yml
       - tasks/android_studio.yml
+      - tasks/zed.yml
       - tasks/ghostty.yml
       - tasks/aerospace.yml
       - tasks/mac_defaults.yml

@@ -30,6 +30,7 @@
       - obsidian
       - nikitabobko/tap/aerospace
       - libreoffice
+      - thunderbird@beta
   homebrew_cask:
     name: "{{ brew_casks }}"
     state: present
