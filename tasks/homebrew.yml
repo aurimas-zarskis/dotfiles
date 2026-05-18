@@ -11,6 +11,7 @@
   vars:
     brew_taps:
       - FelixKratz/formulae
+      - sdkman/tap
   homebrew_tap:
     name: "{{ brew_taps }}"
     state: present
@@ -43,10 +44,7 @@
       - oh-my-posh
       - fzf
       - git
-#      - gawk
-#      - grep
-#      - gnu-sed
-#      - coreutils
+      - sdkman-cli
   homebrew:
     name: "{{ brew_packages }}"
     state: present
