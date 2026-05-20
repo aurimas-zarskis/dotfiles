@@ -5,4 +5,5 @@
       source ~/.zshrc
       sdk install java 21.0.11-tem
       sdk install java 26.0.1-tem
+      sdk default java 21.0.11-tem
     executable: /bin/zsh
