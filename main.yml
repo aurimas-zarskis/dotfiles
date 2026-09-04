@@ -13,6 +13,7 @@
       - tasks/zed.yml
       - tasks/ghostty.yml
       - tasks/aerospace.yml
+      - tasks/claude.yml
       - tasks/mac_defaults.yml
 
   pre_tasks:

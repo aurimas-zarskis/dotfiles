@@ -1,0 +1,20 @@
+---
+- name: Create .claude directory
+  file:
+    path: "{{ ansible_facts['user_dir'] }}/.claude"
+    state: directory
+    mode: 0700
+
+- name: Create symlink for Claude status line script
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/claude/awesome-statusline.sh"
+    dest: "{{ ansible_facts['user_dir'] }}/.claude/awesome-statusline.sh"
+    force: true
+    state: link
+
+- name: Create symlink for Claude settings file
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/claude/settings.json"
+    dest: "{{ ansible_facts['user_dir'] }}/.claude/settings.json"
+    force: true
+    state: link

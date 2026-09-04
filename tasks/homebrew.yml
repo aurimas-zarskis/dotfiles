@@ -31,7 +31,10 @@
       - obsidian
       - nikitabobko/tap/aerospace
       - libreoffice
-      - thunderbird@beta
+      - emclient
+      - claude-code
+      - antigravity-cli
+      - android-cli
   homebrew_cask:
     name: "{{ brew_casks }}"
     state: present
@@ -45,6 +48,7 @@
       - fzf
       - git
       - sdkman-cli
+      - jq
   homebrew:
     name: "{{ brew_packages }}"
     state: present

@@ -77,13 +77,15 @@ else
   _cmd "git -C $DOTFILES_DIR pull --quiet"
 fi
 
+cd "$DOTFILES_DIR" || exit 1
+
 # Update Ansible galaxy
 update_ansible_galaxy
 
 # Run playbook
 _task "Running Ansible playbook"; _task_done
 if [[ -f $VAULT_SECRET ]]; then
-  ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
+  ansible-playbook --vault-password-file $VAULT_SECRET main.yml "$@"
 else
   mkdir $VAULT_DIR
   touch $VAULT_SECRET
