@@ -22,7 +22,6 @@
       - 1password
       - android-studio-preview@beta
       - brave-browser
-      - scroll-reverser
       - slack
       - readdle-spark
       - zed
@@ -35,6 +34,8 @@
       - claude-code
       - antigravity-cli
       - android-cli
+      - shirkeharsh/tap/mooziac
+      - linearmouse
   homebrew_cask:
     name: "{{ brew_casks }}"
     state: present
