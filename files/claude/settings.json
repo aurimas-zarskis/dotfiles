@@ -3,5 +3,7 @@
     "type": "command",
     "command": "bash ~/.claude/awesome-statusline.sh"
   },
-  "theme": "auto"
+  "advisorModel": "opus",
+  "theme": "auto",
+  "tui": "fullscreen"
 }
