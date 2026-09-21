@@ -2,6 +2,11 @@
 - name: DotFiles Config
   hosts: localhost
   connection: local
+  vars_prompt:
+    - name: ansible_become_password
+      prompt: "BECOME password"
+      private: true
+      default: ""
   vars:
     includes:
       - tasks/homebrew.yml
