@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   vars_prompt:
-    - name: ansible_become_password
+    - name: ansible_become_pass
       prompt: "BECOME password"
       private: true
       default: ""
@@ -28,6 +28,25 @@
         - always
 
   tasks:
-    - name: Run included tasks
-      ansible.builtin.include_tasks: "{{ item }}"
-      loop: "{{ includes }}"
+    - name: Execute playbook
+      block:
+        - name: Create directory for sudo_askpass
+          ansible.builtin.file:
+            path: "{{ playbook_dir }}/.ansible/bin"
+            state: directory
+            mode: '0700'
+
+        - name: Create script for sudo_askpass
+          ansible.builtin.template:
+            src: templates/sudo_askpass.sh.j2
+            dest: "{{ playbook_dir }}/.ansible/bin/sudo_askpass.sh"
+            mode: '0700'
+
+        - name: Run included tasks
+          ansible.builtin.include_tasks: "{{ item }}"
+          loop: "{{ includes }}"
+      always:
+        - name: Clean up askpass helper script
+          ansible.builtin.file:
+            path: "{{ playbook_dir }}/.ansible/bin/sudo_askpass.sh"
+            state: absent

@@ -7,7 +7,7 @@
   homebrew:
     upgrade_all: true
   environment:
-    SUDO_ASKPASS: "{{ ansible_become_password }}"
+    SUDO_ASKPASS: "{{ playbook_dir }}/.ansible/bin/sudo_askpass.sh"
 
 - name: Tap homebrew
   vars:
