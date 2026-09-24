@@ -53,6 +53,9 @@
       - git
       - sdkman-cli
       - jq
+      - ripgrep
+      - ast-grep
+      - fastmod
   homebrew:
     name: "{{ brew_packages }}"
     state: present
