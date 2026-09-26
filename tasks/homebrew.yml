@@ -1,11 +1,24 @@
 ---
 - name: Update Homebrew
-  homebrew:
+  community.general.homebrew:
     update_homebrew: true
 
+- name: Check for outdated Homebrew packages and casks
+  ansible.builtin.command: brew outdated --json=v2
+  register: brew_outdated_cmd
+  changed_when: false
+  check_mode: false
+
+- name: Record installed casks before installation
+  ansible.builtin.command: brew list --cask -1
+  register: casks_before
+  changed_when: false
+  check_mode: false
+  
 - name: Upgrade Homebrew Packages
-  homebrew:
+  community.general.homebrew:
     upgrade_all: true
+  register: brew_upgrade_result
   environment:
     SUDO_ASKPASS: "{{ playbook_dir }}/.ansible/bin/sudo_askpass.sh"
 
@@ -14,10 +27,11 @@
     brew_taps:
       - FelixKratz/formulae
       - sdkman/tap
-  homebrew_tap:
+  community.general.homebrew_tap:
     name: "{{ brew_taps }}"
     trust: true
     state: present
+  register: brew_taps_result
 
 - name: Install homebrew casks
   vars:
@@ -39,9 +53,17 @@
       - android-cli
       - shirkeharsh/tap/mooziac
       - linearmouse
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: "{{ brew_casks }}"
     state: present
+  register: brew_casks_result
+
+- name: Record installed casks after installation
+  ansible.builtin.command: brew list --cask -1
+  register: casks_after
+  changed_when: false
+  check_mode: false
+  when: brew_casks_result.changed
 
 - name: Install homebrew packages
   vars:
@@ -56,6 +78,30 @@
       - ripgrep
       - ast-grep
       - fastmod
-  homebrew:
+  community.general.homebrew:
     name: "{{ brew_packages }}"
     state: present
+  register: brew_packages_result
+
+- name: Summary of Homebrew changes
+  vars:
+    upgraded_formulae: "{{ (brew_outdated_cmd.stdout | from_json).formulae | map(attribute='name') | list if (brew_upgrade_result.changed | default(false)) else [] }}"
+    upgraded_casks: "{{ (brew_outdated_cmd.stdout | from_json).casks | map(attribute='name') | list if (brew_upgrade_result.changed | default(false)) else [] }}"
+    newly_installed_casks: "{{ (casks_after.stdout_lines | default([])) | difference(casks_before.stdout_lines | default([])) }}"
+    newly_installed_packages: "{{ brew_packages_result.changed_pkgs | default([]) }}"
+  ansible.builtin.debug:
+    msg: >-
+      {{
+        [
+          ('Added Taps: ' ~ brew_taps_result.msg) if (brew_taps_result.changed | default(false)) else '',
+          ('Upgraded Formulae: ' ~ (upgraded_formulae | join(', '))) if upgraded_formulae else '',
+          ('Upgraded Casks: ' ~ (upgraded_casks | join(', '))) if upgraded_casks else '',
+          ('Installed Casks: ' ~ (newly_installed_casks | join(', '))) if newly_installed_casks else '',
+          ('Installed Packages: ' ~ (newly_installed_packages | join(', '))) if newly_installed_packages else ''
+        ] | select('ne', '') | list
+      }}
+  when: >-
+    (brew_upgrade_result.changed | default(false) and (upgraded_formulae or upgraded_casks)) or
+    (brew_taps_result.changed | default(false)) or
+    (newly_installed_casks | length > 0) or
+    (newly_installed_packages | length > 0)
