@@ -1,0 +1,28 @@
+---
+- name: Download CodeGraph installer script
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.sh
+    dest: /tmp/codegraph_install.sh
+    mode: '0755'
+
+- name: Run CodeGraph installer
+  ansible.builtin.command:
+    cmd: /tmp/codegraph_install.sh
+    creates: "{{ ansible_facts['user_dir'] }}/.codegraph/current/bin/codegraph"
+
+- name: Clean up CodeGraph installer script
+  ansible.builtin.file:
+    path: /tmp/codegraph_install.sh
+    state: absent
+
+- name: Ensure CodeGraph is updated to latest version
+  ansible.builtin.command:
+    cmd: "{{ ansible_facts['user_dir'] }}/.codegraph/current/bin/codegraph upgrade"
+  register: codegraph_upgrade
+  changed_when: "'Already up to date' not in codegraph_upgrade.stdout"
+
+- name: Ensure codegraph is in PATH
+  path_entry:
+    name: codegraph
+    paths:
+      - "{{ ansible_facts['user_dir'] }}/.codegraph/current/bin"

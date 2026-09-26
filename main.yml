@@ -19,6 +19,7 @@
       - tasks/ghostty.yml
       - tasks/aerospace.yml
       - tasks/claude.yml
+      - tasks/codegraph.yml
       - tasks/mac_defaults.yml
 
   pre_tasks:
