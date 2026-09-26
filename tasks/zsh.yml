@@ -29,12 +29,33 @@
     repo: "https://github.com/Aloxaf/fzf-tab"
     dest: "{{ ansible_facts['user_dir'] }}/.config/zsh/plugins/fzf-tab"
 
-- name: Add dotfiles to path
-  blockinfile:
+- name: Ensure zsh paths.d directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.config/zsh/paths.d"
+    state: directory
+    mode: '0700'
+
+- name: Remove legacy dotfiles path block from .zshenv
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_facts['user_dir'] }}/.zshenv"
+    marker: "# {mark} Ansible managed block for custom dotfiles.sh script"
+    state: absent
+
+- name: Configure .zshenv with modular paths loader
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_facts['user_dir'] }}/.zshenv"
+    create: true
+    mode: '0644'
+    marker: "# {mark} ANSIBLE MANAGED PATH LOADER"
     prepend_newline: true
     block: |
-      path+=({{ ansible_facts['user_dir'] }}/.dotfiles/bin)
-    create: true
-    marker: "# {mark} Ansible managed block for custom dotfiles.sh script"
-    mode: 0644
-    path: "{{ ansible_facts['user_dir'] }}/.zshenv"
+      # Deduplicate PATH entries automatically
+      typeset -U path PATH
+
+      # Base dotfiles bin
+      path=({{ ansible_facts['user_dir'] }}/.dotfiles/bin $path)
+
+      # Source modular path snippets
+      for file in "{{ ansible_facts['user_dir'] }}/.config/zsh/paths.d"/*.zsh(N); do
+        source "$file"
+      done
