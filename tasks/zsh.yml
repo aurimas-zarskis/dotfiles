@@ -19,11 +19,6 @@
     state: directory
     mode: 0700
 
-#- name: Clone fzf-tab-completion plugin
-#  ansible.builtin.git:
-#    repo: "https://github.com/lincheney/fzf-tab-completion"
-#    dest: "{{ ansible_user_dir }}/.config/zsh/plugins/fzf-tab-completion"
-
 - name: Clone fzf-tab plugin
   ansible.builtin.git:
     repo: "https://github.com/Aloxaf/fzf-tab"
@@ -52,8 +47,9 @@
       # Deduplicate PATH entries automatically
       typeset -U path PATH
 
-      # Base dotfiles bin
+      # Add .dotfiles/bin and .local/bin to path
       path=({{ ansible_facts['user_dir'] }}/.dotfiles/bin $path)
+      path=({{ ansible_facts['user_dir'] }}/.local/bin $path)
 
       # Source modular path snippets
       for file in "{{ ansible_facts['user_dir'] }}/.config/zsh/paths.d"/*.zsh(N); do
